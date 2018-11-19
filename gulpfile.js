@@ -31,12 +31,13 @@ elixir(function(mix) {
 
     .scripts([
 
+        'libs/jquery.js',
+        'libs/scripts.js',
     	'libs/bootstrap.js',
     	'libs/bootstrap.min.js',
-    	'libs/jquery.js',
     	'libs/metisMenu.js',
-    	'libs/sb-admin-2.js',
-    	'libs/scripts.js'
+    	'libs/sb-admin-2.js'
+    	
 
 
 
