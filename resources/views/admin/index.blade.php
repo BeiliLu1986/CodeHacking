@@ -1,2 +1,1 @@
-@extends('layouts.admin')
-
+<h1>Its working </h1>
