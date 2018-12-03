@@ -15,15 +15,26 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('role_id','Role:') !!}
-			{!! Form::text('role_id',null,['class'=>'form-control']) !!}
+			{!! Form::select('role_id',[''=> 'Chose Options'] + $roles,null,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('status','Name:') !!}
 			{!! Form::select('status',array(1 => 'Active', 0 => 'Not Active'),0,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
+			{!! Form::label('password','Password:') !!}
+			{!! Form::password('password',['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
 			{!! Form::submit('Create User',['class'=>'btn btn-primary']) !!}
 		</div>
 	{!! Form::close() !!}
+
+@include('includes.form_createUser_error')
+	
+		
+	
+
+	
 
 @stop
