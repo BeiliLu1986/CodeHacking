@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('content');
+@section('content')
 
 <h1>Users</h1>
 

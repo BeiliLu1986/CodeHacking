@@ -4,7 +4,7 @@
 
 	<h1>Create Users</h1>
 	
-	{!! Form::open(['method'=>'POST','action'=>'AdminUsersController@store']) !!}
+	{!! Form::open(['method'=>'POST','action'=>'AdminUsersController@store','files'=>true]) !!}
 	    <div class="form-group">
 			{!! Form::label('name','Name:') !!}
 			{!! Form::text('name',null,['class'=>'form-control']) !!}
@@ -18,8 +18,12 @@
 			{!! Form::select('role_id',[''=> 'Chose Options'] + $roles,null,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('status','Name:') !!}
-			{!! Form::select('status',array(1 => 'Active', 0 => 'Not Active'),0,['class'=>'form-control']) !!}
+			{!! Form::label('is_active','Status:') !!}
+			{!! Form::select('is_active',array(1 => 'Active', 0 => 'Not Active'),0,['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+			{!! Form::label('file','File:') !!}
+			{!! Form::file('file',null,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('password','Password:') !!}
