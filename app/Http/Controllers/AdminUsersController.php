@@ -48,12 +48,19 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
         
-       // return $request->all();
-       
-       //User::create($request->all());
-       
-       $input = $request->all();
+        if(trim($request->password ) == ''){
 
+            $input = $request->except('password');
+
+        } else {
+
+            $input = $request->all();
+
+            $input['password'] = bcrypt($request->password);
+
+        }
+
+             
        if($file = $request->file('photo_id')){
 
             $name = time().$file->getClientOriginalName();
@@ -66,7 +73,7 @@ class AdminUsersController extends Controller
 
        }
 
-        $input['password'] = bcrypt($request->password);
+        
 
         User::create($input);
 
@@ -104,9 +111,6 @@ class AdminUsersController extends Controller
         return view('admin.users.edit', compact('user','roles'));
 
 
-
-
-
     }
 
     /**
@@ -120,10 +124,20 @@ class AdminUsersController extends Controller
     {
         //
         
+         if(trim($request->password ) == ''){
+
+            $input = $request->except('password');
+
+        } else {
+
+            $input = $request->all();
+
+            $input['password'] = bcrypt($request->password);
+
+        }
+
         $user = User::findOrFail($id);
-
-        $input = $request->all();
-
+   
         if($file = $request->file('photo_id')){
 
             $name = time() . $file->getClientOriginalName();
