@@ -32,8 +32,5 @@
 <div class="row">
         @include('includes.form_createUser_error')  
 </div>
-  
-
-     
 
 @stop
