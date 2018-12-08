@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Requests\PostsCreateRequest;
 use App\Http\Requests;
@@ -9,6 +10,8 @@ use App\Post;
 use App\User;
 use App\Role;
 use App\Photo;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminPostsController extends Controller
 {
@@ -48,8 +51,24 @@ class AdminPostsController extends Controller
         //
         // return $request->all();
 
+        $input = $request->all();
+
         $user = Auth::user();
-        $user->posts
+ 
+        if($file = $request->file('photo_id')){
+
+           $name = time() . $file->getClientOriginalName();
+
+           $file->move('images', $name);
+
+           $photo = Photo::create(['file'=>$name]);
+
+           $input['photo_id'] = $photo->id; 
+        }
+        
+        $user->posts()->create($input);
+
+        return redirect('/admin/posts');
 
     }
 
