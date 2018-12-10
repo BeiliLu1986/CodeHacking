@@ -19,6 +19,9 @@
 
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
 
+
+    @yield('styles')
+
 </head>
 <body id="admin-page">
 <div id="wrapper">
@@ -296,7 +299,7 @@
 
 <script type="text/javascript" src="{{asset('js/libs.js')}}"></script>
 
-
+@yield('scripts')
 @yield('footer')
 
 
