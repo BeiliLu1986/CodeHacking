@@ -140,7 +140,7 @@ class AdminPostsController extends Controller
     {
         //
 
-        $post = Post::findOrFail($post);
+        $post = Post::findOrFail($id);
 
         unlink(public_path() . $post->photo->file);
 
