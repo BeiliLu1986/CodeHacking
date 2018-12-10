@@ -19,6 +19,11 @@ class AdminMediasController extends Controller
 
     }
 
+    public function create(){
+
+        return view('admin.media.create');
+
+    }
 
 
 
