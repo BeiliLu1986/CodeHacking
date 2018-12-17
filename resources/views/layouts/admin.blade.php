@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
+
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
@@ -98,6 +98,9 @@
                             <li>
                                 <a href="{{ route('admin.posts.create') }}">Create Post</a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.comments.index') }}">All Comments</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -134,12 +137,7 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
-
-
-
-
-
+                    
 
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -300,7 +298,7 @@
 <script type="text/javascript" src="{{asset('js/libs.js')}}"></script>
 
 @yield('scripts')
-@yield('footer')
+{{-- @yield('footer') --}}
 
 
 
