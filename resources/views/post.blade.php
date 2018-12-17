@@ -94,13 +94,13 @@
                                         <button class="toggle-reply btn btn-primary pull-right">Reply </button>
                                     
                                     {{-- <div class="comment-reply" > //This is not working --}}
-                                    <div style="display: none">
+                                    <div style="display: none" class="col-sm-10" >
 
                                             {!! Form::open(['method'=>'POST','action'=>'CommentRepliesController@createReply']) !!}
                                                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
                                                 <div class="form-group">
                                                     {!! Form::label('body', 'Comment:') !!}
-                                                    {!! Form::textarea('body',null,['class'=>'form-control','rows'=>3]) !!}
+                                                    {!! Form::textarea('body',null,['class'=>'form-control ','rows'=>2]) !!}
                                                 </div>
                                                 <div class="form-group">
                                                     {!! Form::submit('Submit comment', ['class'=>'btn btn-primary']) !!}
