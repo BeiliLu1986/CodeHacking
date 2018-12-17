@@ -75,8 +75,8 @@
                     </h4>
                     <p> {{ $comment->body }} </p> 
                     <br>   
-                    @if (count($comment->replies) > 0 )
-                        @foreach ($comment->replies as $reply)
+                    {{-- {{-- @if (count($comment->replies) > 0 ) --}}
+                        @foreach ($comment->replies as $reply) 
                                 <!-- Nested Comment -->
                                 <div id="nested-comment" class=" media">
                                     <a class="pull-left" href="#">
@@ -89,11 +89,12 @@
                                         <p>  {{ $reply->body }} </p>
                                     </div>
                                     
-                                    <div  class="comment-reply-container">
+                                    <div  class="comment-reply-container"> 
 
                                         <button class="toggle-reply btn btn-primary pull-right">Reply </button>
-
-                                        <div class="comment-reply" style="display: none;">
+                                    
+                                    {{-- <div class="comment-reply" > //This is not working --}}
+                                    <div style="display: none">
 
                                             {!! Form::open(['method'=>'POST','action'=>'CommentRepliesController@createReply']) !!}
                                                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
@@ -114,7 +115,7 @@
                             </div>
                         @endforeach
 
-                    @endif
+                    {{-- @endif --}} 
 
                 </div>
             </div>
@@ -135,7 +136,7 @@
 
         });
 
-    </script>
+    </script> 
     
 @stop
 

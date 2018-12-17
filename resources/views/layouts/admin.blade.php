@@ -298,7 +298,7 @@
 <script type="text/javascript" src="{{asset('js/libs.js')}}"></script>
 
 @yield('scripts')
-@yield('footer')
+{{-- @yield('footer') --}}
 
 
 
