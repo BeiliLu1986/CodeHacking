@@ -77,6 +77,9 @@
                     <br>   
                     {{-- {{-- @if (count($comment->replies) > 0 ) --}}
                         @foreach ($comment->replies as $reply) 
+
+                            @if($reply->is_active == 1)
+
                                 <!-- Nested Comment -->
                                 <div id="nested-comment" class=" media">
                                     <a class="pull-left" href="#">
@@ -113,6 +116,12 @@
 
                                 <!-- End Nested Comment -->
                             </div>
+
+                            @else
+
+                                <h1 class="text-center">No Replies</h1>
+
+                            @endif
                         @endforeach
 
                     {{-- @endif --}} 
