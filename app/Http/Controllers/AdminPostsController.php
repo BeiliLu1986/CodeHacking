@@ -13,7 +13,6 @@ use App\Photo;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
 
-
 class AdminPostsController extends Controller
 {
     /**
@@ -25,7 +24,8 @@ class AdminPostsController extends Controller
     {
         //
 
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::paginate(3);
 
         return view('admin.posts.index',compact('posts'));
     }
@@ -56,16 +56,16 @@ class AdminPostsController extends Controller
         $input = $request->all();
 
         $user = Auth::user();
- 
+
         if($file = $request->file('photo_id')){
 
-           $name = time() . $file->getClientOriginalName();
+        $name = time() . $file->getClientOriginalName();
 
-           $file->move('images', $name);
+        $file->move('images', $name);
 
-           $photo = Photo::create(['file'=>$name]);
+        $photo = Photo::create(['file'=>$name]);
 
-           $input['photo_id'] = $photo->id; 
+        $input['photo_id'] = $photo->id; 
         }
         
         $user->posts()->create($input);
@@ -110,23 +110,44 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // This  just work whit the owner of the post
         $input = $request->all();
 
         if($file = $request->file('photo_id')){
 
             $name = time() . $file->getClientOriginalName();
- 
-            $file->move('images', $name);
- 
-            $photo = Photo::create(['file'=>$name]);
- 
-            $input['photo_id'] = $photo->id; 
-         }
-         
-         Auth::user()->posts()->whereId($id)->first()->update($input);
 
-         return redirect('/admin/posts');
+            $file->move('images', $name);
+
+            $photo = Photo::create(['file'=>$name]);
+
+            $input['photo_id'] = $photo->id; 
+        }
+        
+        Auth::user()->posts()->whereId($id)->first()->update($input);
+
+        return redirect('/admin/posts');
+
+        // $input = $request->all();
+        // $user = Auth::user();
+
+        // if($file = $request->file('photo_id')){
+
+        // $name = time() . $file->getClientOriginalName();
+
+        // $file->move('images', $name);
+
+        // $photo = Photo::create(['file'=>$name]);
+
+        // $input['photo_id'] = $photo->id; 
+        // }
+        
+        // $user->posts()->whereId($id)->first()->update($input);
+
+        // return redirect('/admin/posts');
+
+
+
 
     }
 
@@ -153,7 +174,10 @@ class AdminPostsController extends Controller
 
     public function post($id){
 
-        $post = Post::findOrFail($id);
+        //Using slug = $id
+        $post = Post::findBySlugOrFail($id);
+
+        // $post = Post::findOrFail($id);
 
         $comments = $post->comments()->whereIsActive(1)->get();
 
